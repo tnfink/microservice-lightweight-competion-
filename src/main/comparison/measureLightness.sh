@@ -11,7 +11,7 @@ function echoSizeOfFile {
 }
 
 function countAllLOCs {
-    find $1 \( -name "*.java" -or -name "*.xml" \) -exec cat {} \; | wc -l
+    find $1 \( -name "*.java" -or -name "*.xml" \) -exec cat "{}" \; | wc -l
 }
 
 pushd ../../../
@@ -27,18 +27,18 @@ WILDFLY_MS_DIR=mlc-wildflyswarm-project/mlc-wildflyswarm-microservice
 log "Measure sizes of Jars"
 
 echo Spring-Boot
-echoSizeOfFile $SPRINGBOOT_MS_DIR/target/mlc-springboot-microservice-1.0-SNAPSHOT.jar
+echoSizeOfFile ${SPRINGBOOT_MS_DIR}/target/mlc-springboot-microservice-1.0-SNAPSHOT.jar
 
 echo Wildfly-Swarm
-echoSizeOfFile $WILDFLY_MS_DIR/target/mlc-wildflyswarm-microservice-1.0-SNAPSHOT-swarm.jar
+echoSizeOfFile ${WILDFLY_MS_DIR}/target/mlc-wildflyswarm-microservice-1.0-SNAPSHOT-swarm.jar
 
 log "Measure LOCs"
 
 echo Spring-Boot
-countAllLOCs $SPRINGBOOT_MS_DIR
+countAllLOCs ${SPRINGBOOT_MS_DIR}
 
 echo Wildfly-Swarm
-countAllLOCs $WILDFLY_MS_DIR
+countAllLOCs ${WILDFLY_MS_DIR}
 
 
 log Done
