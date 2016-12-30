@@ -1,8 +1,10 @@
 package de.akquinet.mlc.springboot;
 
+import org.springframework.boot.SpringApplication;
+
 public class StartupSpring {
 
     public static void main(String[] args) {
-        System.out.println("I should start this up!");
+        SpringApplication.run(AdderService.class, args);
     }
 }
