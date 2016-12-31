@@ -1,0 +1,4 @@
+cd mlc-yesod-microservice
+stack setup
+stack build
+stack exec mlc-yesod-microservice-exe
