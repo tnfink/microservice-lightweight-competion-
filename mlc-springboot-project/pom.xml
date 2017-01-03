@@ -15,6 +15,7 @@
 
     <modules>
         <module>mlc-springboot-microservice</module>
+        <module>mlc-springboot-docker</module>
     </modules>
 
 </project>
