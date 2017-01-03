@@ -14,5 +14,6 @@
 
     <modules>
         <module>mlc-wildflyswarm-microservice</module>
+        <module>mlc-wildflyswarm-docker</module>
     </modules>
 </project>
