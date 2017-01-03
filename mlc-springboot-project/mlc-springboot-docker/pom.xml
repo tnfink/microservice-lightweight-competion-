@@ -52,7 +52,7 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
-                    <imageName>akquinet:mlc-springboot</imageName>
+                    <imageName>akquinet/mlc-springboot:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                 </configuration>
                 <executions>

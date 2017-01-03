@@ -45,7 +45,7 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
-                    <imageName>akquinet:mlc-wildfly-swarm</imageName>
+                    <imageName>akquinet/mlc-wildfly-swarm:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                 </configuration>
                 <executions>
