@@ -40,19 +40,19 @@
                         <configuration>
                             <executable>stack</executable>
                             <workingDirectory>${project.basedir}/mlc-snap-microservice</workingDirectory>
-                            <commandlineArgs>build</commandlineArgs>
+                            <commandlineArgs>install</commandlineArgs>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>dockerize-stack</id>
+                        <id>build-docker-image</id>
                         <phase>install</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>stack</executable>
-                            <workingDirectory>${project.basedir}/mlc-snap-microservice</workingDirectory>
-                            <commandlineArgs>docker</commandlineArgs>
+                            <executable>sh</executable>
+                            <workingDirectory>${project.basedir}/mlc-snap-docker</workingDirectory>
+                            <commandlineArgs>buildDockerImage.sh</commandlineArgs>
                         </configuration>
                     </execution>
                 </executions>
