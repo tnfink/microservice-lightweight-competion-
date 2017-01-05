@@ -12,6 +12,7 @@
     <modules>
         <module>mlc-springboot-project</module>
         <module>mlc-wildflyswarm-project</module>
+        <module>mlc-wildfly-project</module>
     </modules>
 
     <properties>
