@@ -11,7 +11,7 @@ function echoSizeOfFile {
 }
 
 function countAllLOCs {
-    find $1 \( -name "*.java" -or -name "*.xml" \) -exec cat "{}" \; | wc -l
+    find $1 \( -name "*.java" -or -name "*.xml" -or -name "*.xml" -or -name "*.yaml"  \) -exec cat "{}" \; | wc -l
 }
 
 pushd ../../../
@@ -23,14 +23,18 @@ log "Build project"
 
 SPRINGBOOT_MS_DIR=mlc-springboot-project/mlc-springboot-microservice
 WILDFLY_MS_DIR=mlc-wildflyswarm-project/mlc-wildflyswarm-microservice
+SNAP_MS_DIR=mlc-snap-project/mlc-snap-microservice
 
-log "Measure sizes of Jars"
+log "Measure sizes of Executables"
 
 echo Spring-Boot
 echoSizeOfFile ${SPRINGBOOT_MS_DIR}/target/mlc-springboot-microservice-1.0-SNAPSHOT.jar
 
 echo Wildfly-Swarm
 echoSizeOfFile ${WILDFLY_MS_DIR}/target/mlc-wildflyswarm-microservice-1.0-SNAPSHOT-swarm.jar
+
+echo Snap
+echoSizeOfFile ${SNAP_MS_DIR}/.stack-work/docker/_home/.local/bin/*
 
 log "Measure LOCs"
 
@@ -39,6 +43,9 @@ countAllLOCs ${SPRINGBOOT_MS_DIR}
 
 echo Wildfly-Swarm
 countAllLOCs ${WILDFLY_MS_DIR}
+
+echo Snap
+countAllLOCs ${SNAP_MS_DIR}
 
 
 log Done
