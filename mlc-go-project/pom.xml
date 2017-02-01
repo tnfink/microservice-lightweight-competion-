@@ -30,7 +30,6 @@
                             <commandlineArgs>src/scripts/buildMicroserviceForDocker.sh</commandlineArgs>
                         </configuration>
                     </execution>
-                    <!--
                     <execution>
                         <id>build-docker-image</id>
                         <phase>install</phase>
@@ -39,11 +38,10 @@
                         </goals>
                         <configuration>
                             <executable>sh</executable>
-                            <workingDirectory>${project.basedir}/mlc-snap-docker</workingDirectory>
-                            <commandlineArgs>buildDockerImage.sh</commandlineArgs>
+                            <workingDirectory>${project.basedir}/</workingDirectory>
+                            <commandlineArgs>src/scripts/buildDockerImage.sh</commandlineArgs>
                         </configuration>
                     </execution>
-                    -->
                 </executions>
             </plugin>
         </plugins>
