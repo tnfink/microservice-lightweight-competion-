@@ -25,9 +25,9 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>go</executable>
-                            <workingDirectory>${project.basedir}/mlc-go-microservice</workingDirectory>
-                            <commandlineArgs>build -o ../target/adderMicroservice src/adderMicroservice.go</commandlineArgs>
+                            <executable>sh</executable>
+                            <workingDirectory>${project.basedir}/</workingDirectory>
+                            <commandlineArgs>src/scripts/buildMicroserviceForDocker.sh</commandlineArgs>
                         </configuration>
                     </execution>
                     <!--
