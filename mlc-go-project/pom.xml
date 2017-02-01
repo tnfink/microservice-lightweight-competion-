@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mlc-snap-project</artifactId>
+    <artifactId>mlc-go-project</artifactId>
     <packaging>pom</packaging>
 
     <build>
@@ -19,29 +19,18 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>cleanup-stack</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>stack</executable>
-                            <workingDirectory>${project.basedir}/mlc-snap-microservice</workingDirectory>
-                            <commandlineArgs>clean</commandlineArgs>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>build-stack</id>
+                        <id>build-go</id>
                         <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>stack</executable>
-                            <workingDirectory>${project.basedir}/mlc-snap-microservice</workingDirectory>
-                            <commandlineArgs>install</commandlineArgs>
+                            <executable>go</executable>
+                            <workingDirectory>${project.basedir}/mlc-go-microservice</workingDirectory>
+                            <commandlineArgs>build -o ../target/adderMicroservice src/adderMicroservice.go</commandlineArgs>
                         </configuration>
                     </execution>
+                    <!--
                     <execution>
                         <id>build-docker-image</id>
                         <phase>install</phase>
@@ -54,6 +43,7 @@
                             <commandlineArgs>buildDockerImage.sh</commandlineArgs>
                         </configuration>
                     </execution>
+                    -->
                 </executions>
             </plugin>
         </plugins>

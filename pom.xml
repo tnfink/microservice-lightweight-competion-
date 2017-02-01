@@ -13,6 +13,8 @@
         <module>mlc-springboot-project</module>
         <module>mlc-wildflyswarm-project</module>
         <module>mlc-wildfly-project</module>
+        <module>mlc-snap-project</module>
+        <module>mlc-go-project</module>
     </modules>
 
     <properties>
@@ -36,6 +38,11 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>1.4.4.RELEASE</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.5.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
