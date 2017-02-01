@@ -11,10 +11,10 @@ function echoSizeOfFile {
 }
 
 function countAllLOCs {
-    find $1 \( -name "*.java" -or -name "*.xml" -or -name "*.xml" -or -name "*.yaml"  \) -exec cat "{}" \; | wc -l
+    find $1 \( -name "*.java" -or -name "*.xml" -or -name "*.xml" -or -name "*.yaml" -or -name "*.go" \) -exec cat "{}" \; | wc -l
 }
 
-pushd ../../../
+#pushd ../../../
 
 # log "Build project"
 
@@ -25,6 +25,7 @@ SPRINGBOOT_MS_DIR=mlc-springboot-project/mlc-springboot-microservice
 WILDFLY_SWARM_MS_DIR=mlc-wildflyswarm-project/mlc-wildflyswarm-microservice
 WILDFLY_MS_DIR=mlc-wildfly-project/mlc-wildfly-microservice
 SNAP_MS_DIR=mlc-snap-project/mlc-snap-microservice
+GO_MS_DIR=mlc-go-project/mlc-go-microservice
 
 log "Measure sizes of Executables"
 
@@ -40,6 +41,9 @@ echoSizeOfFile ${WILDFLY_SWARM_MS_DIR}/target/mlc-wildflyswarm-microservice-1.0-
 echo Snap
 echoSizeOfFile ${SNAP_MS_DIR}/.stack-work/docker/_home/.local/bin/*
 
+echo Go
+echoSizeOfFile ${GO_MS_DIR}/../target/*
+
 log "Measure LOCs"
 
 echo Spring-Boot
@@ -53,6 +57,9 @@ countAllLOCs ${WILDFLY_SWARM_MS_DIR}
 
 echo Snap
 countAllLOCs ${SNAP_MS_DIR}
+
+echo Go
+countAllLOCs ${GO_MS_DIR}
 
 
 log Done

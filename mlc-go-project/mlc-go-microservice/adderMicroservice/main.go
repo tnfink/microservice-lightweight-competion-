@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"fmt"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -30,5 +31,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/adder", handler)
+	fmt.Print("Starting up")
 	http.ListenAndServe(":8080", nil)
 }
