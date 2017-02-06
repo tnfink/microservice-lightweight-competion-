@@ -11,7 +11,7 @@ function echoSizeOfFile {
 }
 
 function countAllLOCs {
-    find $1 \( -name "*.java" -or -name "*.xml" -or -name "*.xml" -or -name "*.yaml" -or -name "*.go" \) -exec cat "{}" \; | wc -l
+    find $1 \( -name "*.java" -or -name "*.xml" -or -name "*.xml" -or -name "*.yaml" -or -name "*.go" -or -name "*.hs" \) -exec cat "{}" \; | wc -l
 }
 
 #pushd ../../../
@@ -57,6 +57,8 @@ countAllLOCs ${WILDFLY_SWARM_MS_DIR}
 
 echo Snap
 countAllLOCs ${SNAP_MS_DIR}
+echo "-- minus"
+countAllLOCs ${SNAP_MS_DIR}/.stack-work
 
 echo Go
 countAllLOCs ${GO_MS_DIR}

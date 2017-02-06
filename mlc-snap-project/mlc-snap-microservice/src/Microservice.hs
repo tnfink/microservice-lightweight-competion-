@@ -38,5 +38,7 @@ adderHandler = do
             summand2 <- convertUniqueParameterToFloat summand2StringList
             return (summand1 + summand2)
     case result of
-        Nothing -> writeBS "Error - incorrect paramaters"
+        Nothing -> do
+                    modifyResponse $ setResponseCode 400
+                    writeBS "Error - incorrect parameters"
         Just f -> writeLBS $ toLazyByteString (floatDec f)
