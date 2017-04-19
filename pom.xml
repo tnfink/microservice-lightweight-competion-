@@ -15,6 +15,7 @@
         <module>mlc-wildfly-project</module>
         <module>mlc-snap-project</module>
         <module>mlc-go-project</module>
+	<module>mlc-swift-project</module>
     </modules>
 
     <properties>
