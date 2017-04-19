@@ -1,0 +1,37 @@
+Environment:
+ Processor: Intel Core i7
+ Processor clock: 2.5 GHz
+ Processors: 1
+ Cores: 4
+ L2-Cache (per core): 256 KB
+ L3-Cache: 6 MB
+ Memory (RAM): 16 GB
+ MacOS Sierra 10.12.4
+
+LOC: 17 (ADD operation only) + 10 (Package.swift) = 27
+
+Size: 3.426.360 Bytes (binary)
+Size: 582 Bytes (main.swift) + 232 Bytes (Package.swift) = 814 bytes
+Size: 1,24 GB (Docker image, ubuntu)
+
+Build time: 
+ time `swift build`
+ real	 0m0.926s
+ user	 0m0.556s
+ sys	 0m0.295s
+ 
+Startup time: 0.031 s
+
+Performance:
+
+Test case ADD: Two for loops create requests to add all numbers between 1 and 100 (10.000 requests overall). 
+The request to the server is done with curl. 
+
+Results:
+ time ./plus.sh 
+
+ real	2m6.239s (average per request: 0.0123239 s)
+ user	0m36.594s (average per request: 0.0036594 s)
+ sys	0m31.860s (average per request: 0.003186 s)
+
+Test case SUBTRACT: Two for loops create requests to subtract all numbers between 1 and 100 (10.000 requests overall).
