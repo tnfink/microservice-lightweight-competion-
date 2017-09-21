@@ -15,4 +15,6 @@ router.get("/adder") { request, response, next in
 }
 
 Kitura.addHTTPServer(onPort: 8080, with: router)
+print("Microservice is starting..")
 Kitura.run()
+
