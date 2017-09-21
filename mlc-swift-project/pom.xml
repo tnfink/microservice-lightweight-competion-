@@ -20,7 +20,7 @@
                 <executions>
                     <execution>
                         <id>build-docker-image</id>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
