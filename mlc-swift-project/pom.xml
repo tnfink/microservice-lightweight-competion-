@@ -20,15 +20,32 @@
                 <executions>
                     <execution>
                         <id>build-docker-image</id>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <configuration>
                             <executable>sh</executable>
-                            <workingDirectory>${project.basedir}/mlc-swift-docker/</workingDirectory>
-                            <commandlineArgs>buildDockerImage.sh</commandlineArgs>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <commandlineArgs>src/main/scripts/compileSwift.sh</commandlineArgs>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <imageName>akquinet/mlc-swift:${project.version}</imageName>
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
