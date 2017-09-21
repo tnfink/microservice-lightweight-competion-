@@ -11,4 +11,4 @@ RUN mkdir /root/mlcSwiftMicroservice
 ADD .build/debug/mlcSwiftMicroservice /root/mlcSwiftMicroservice/
 #ADD .build/debug/*.so /root/mlcSwiftMicroservice/
 
-CMD [ "sh", "-c", "/root/mlc-swift-microservice/mlcSwiftMicroservice" ]
+CMD [ "sh", "-c", "/root/mlcSwiftMicroservice/mlcSwiftMicroservice" ]
