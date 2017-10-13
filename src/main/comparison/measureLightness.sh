@@ -10,27 +10,36 @@ function echoSizeOfFile {
     wc -c $1
 }
 
-function countAllLOCs {
-    find $1 \( -name "*.java" -or -name "*.xml" -or -name "*.xml" -or -name "*.yaml" -or -name "*.go" -or -name "*.hs" \) -exec cat "{}" \; | wc -l
+function countAllLOCsJava {
+    find $1 \( -not -path "*/target/*" \) -and \( -name "*.java" -or -name "*.xml" \) -exec cat "{}" \; | wc -l
+}
+
+function countAllLOCsHaskell {
+    find $1 \( -not -path "*/.stack-work/*" \) -and \( -name "*.yaml" -or -name "*.cabal" -or -name "*.hs"  \) -exec cat "{}" \; | wc -l
+}
+
+function countAllLOCsGo {
+    find $1 \( -name "*.go" \) -exec cat "{}" \; | wc -l
 }
 
 function countAllRelevantLOCsSwift {
-    find $1 \( -name "*.swift" -not -path "*/.build/*" \) -exec cat "{}" \; | wc -l
+    find $1 \( -not -path "*/.build/*" \) -and  \( -name "*.swift"  \) -exec cat "{}" \; | wc -l
 }
 
 pushd ../../../
 
 # log "Build project"
+#mvn clean
+#mvn install
 
-mvn clean
-mvn install
+# --------------------
 
-SPRINGBOOT_MS_DIR=mlc-springboot-project/mlc-springboot-microservice
-WILDFLY_SWARM_MS_DIR=mlc-wildflyswarm-project/mlc-wildflyswarm-microservice
-WILDFLY_MS_DIR=mlc-wildfly-project/mlc-wildfly-microservice
-SNAP_MS_DIR=mlc-snap-project/mlc-snap-microservice
-GO_MS_DIR=mlc-go-project/mlc-go-microservice
-SWIFT_MS_DIR=mlc-swift-project/mlc-swift-microservice
+SPRINGBOOT_MS_DIR=mlc-springboot-project/mlc-springboot-microservice/
+WILDFLY_SWARM_MS_DIR=mlc-wildflyswarm-project/mlc-wildflyswarm-microservice/
+WILDFLY_MS_DIR=mlc-wildfly-project/mlc-wildfly-microservice/
+SNAP_MS_DIR=mlc-snap-project/mlc-snap-microservice/
+GO_MS_DIR=mlc-go-project/mlc-go-microservice/
+SWIFT_MS_DIR=mlc-swift-project/
 
 log "Measure sizes of Executables"
 
@@ -55,24 +64,22 @@ echoSizeOfFile ${SWIFT_MS_DIR}/.build/debug/mlc-swift-microservice
 log "Measure LOCs"
 
 echo Spring-Boot
-countAllLOCs ${SPRINGBOOT_MS_DIR}
+countAllLOCsJava ${SPRINGBOOT_MS_DIR}
 
 echo Wildfly
-countAllLOCs ${WILDFLY_MS_DIR}
+countAllLOCsJava ${WILDFLY_MS_DIR}
 
 echo Wildfly-Swarm
-countAllLOCs ${WILDFLY_SWARM_MS_DIR}
+countAllLOCsJava ${WILDFLY_SWARM_MS_DIR}
 
 echo Snap
-countAllLOCs ${SNAP_MS_DIR}
-echo "-- minus"
-countAllLOCs ${SNAP_MS_DIR}/.stack-work
+countAllLOCsHaskell ${SNAP_MS_DIR}
 
 echo Go
-countAllLOCs ${GO_MS_DIR}
+countAllLOCsGo ${GO_MS_DIR}
 
 echo Swift
-countAllRelevantLOCsSwift ${SWIFT_MS_DIR}
+countAllRelevantLOCsSwift ${SWIFT_MS_DIR}/src/main/swift
 
 log Done
 
